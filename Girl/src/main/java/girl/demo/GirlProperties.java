@@ -1,7 +1,9 @@
 package girl.demo;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.stereotype.Component;
 
+@Component
 @ConfigurationProperties(prefix = "girl")
 public class GirlProperties {
 
