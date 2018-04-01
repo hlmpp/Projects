@@ -6,10 +6,10 @@
 <struts>
 	<package name="default" namespace="/" extends="struts-default" strict-method-invocation="false">
 		
-		<action name="helloworld" class="com.pengchen.action.HelloWorldAction">
+		<action name="helloworld_*" method="{1}" class="com.pengchen.action.HelloWorldAction">
 			<result>/result.jsp</result>
-			<result name="add">/add.jsp</result>
-			<result name="update">/update.jsp</result>		
+			<result name="add">/{1}.jsp</result>
+			<result name="update">/{1}.jsp</result>		
 		</action>
 		
 		<!-- <action name="addAction" method="add" class="com.pengchen.action.HelloWorldAction">
@@ -28,6 +28,6 @@
 		
 	</package>
 	
-	<constant name="struts.enable.DynamicMethodInvocation" value="true" />   
+	<constant name="struts.enable.DynamicMethodInvocation" value="false" />   
 
 </struts>	
