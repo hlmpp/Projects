@@ -6,11 +6,11 @@ public class HelloWorldAction extends ActionSupport {
 	
 	
 	public String add() {
-		return SUCCESS;
+		return "add";
 	}
 	
 	public String update() {
-		return SUCCESS;
+		return "update";
 	}
 	
 	@Override

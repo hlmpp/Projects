@@ -4,16 +4,15 @@
 	"http://struts.apache.org/dtds/struts-2.3.dtd">
 	
 <struts>
-	<package name="default" namespace="/" extends="struts-default">
+	<package name="default" namespace="/" extends="struts-default" strict-method-invocation="false">
 		
 		<action name="helloworld" class="com.pengchen.action.HelloWorldAction">
-			<result>
-				/result.jsp
-			</result>
-		
+			<result>/result.jsp</result>
+			<result name="add">/add.jsp</result>
+			<result name="update">/update.jsp</result>		
 		</action>
 		
-		<action name="addAction" method="add" class="com.pengchen.action.HelloWorldAction">
+		<!-- <action name="addAction" method="add" class="com.pengchen.action.HelloWorldAction">
 			<result>
 				/add.jsp
 			</result>
@@ -25,8 +24,10 @@
 				/update.jsp
 			</result>
 		
-		</action>
+		</action> -->
 		
 	</package>
+	
+	<constant name="struts.enable.DynamicMethodInvocation" value="true" />   
 
 </struts>	
