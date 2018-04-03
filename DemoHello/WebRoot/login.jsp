@@ -8,8 +8,10 @@
 </head>
 <body>
 <form action="LoginAction.action" method="post">
-	用户：<input type="text" name="user.username">
-	密码：<input type="password" name="user.password">
+	用户：<input type="text" name="username">
+	密码：<input type="password" name="password">
+	书籍1：<input type="text" name="bookList[0].username">
+	书籍2：<input type="text" name="bookList[1].username">
 	<input type="submit" value="提交" />
 </form>
 </body>
