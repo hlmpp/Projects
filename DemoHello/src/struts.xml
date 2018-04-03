@@ -4,8 +4,8 @@
 	"http://struts.apache.org/dtds/struts-2.3.dtd">
 	
 <struts>
-	
 	<include file="helloworld.xml"></include>
+	<!-- <constant name="struts.action.extention" value=""></constant> -->
 	<constant name="struts.enable.DynamicMethodInvocation" value="false" />   
 
 </struts>	

@@ -19,6 +19,10 @@
 			<result name="update">/{1}.jsp</result>		
 		</action>
 		
+		<action name="LoginAction" method="login" class="com.pengchen.action.LoginAction">
+			<result>/success.jsp</result>
+		</action>
+		
 		<!-- <action name="addAction" method="add" class="com.pengchen.action.HelloWorldAction">
 			<result>
 				/add.jsp
