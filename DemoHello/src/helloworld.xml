@@ -15,7 +15,9 @@
 		
 		<action name="helloworld_*" method="{1}" class="com.pengchen.action.HelloWorldAction">
 			<result>/result.jsp</result>
-			<result name="add">/{1}.jsp</result>
+			<result name="add">
+				<param name="location">/${#request.path}.jsp</param>
+			</result>
 			<result name="update">/{1}.jsp</result>		
 		</action>
 		
