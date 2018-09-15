@@ -16,4 +16,107 @@
             30
         </session-timeout>
     </session-config>
+
+    <servlet>
+        <servlet-name>HelloServlet1</servlet-name>
+        <servlet-class>servlet.HelloServlet_1</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>HelloServlet1</servlet-name>
+        <!-- ??????????,/??????? -->
+        <url-pattern>/servlet/HelloServlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>TestServlet1</servlet-name>
+        <servlet-class>servlet.TestServlet1</servlet-class>
+        <load-on-startup>2</load-on-startup>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>TestServlet1</servlet-name>
+        <!-- ??????????,/??????? -->
+        <url-pattern>/servlet/TestServlet1</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>TestServlet2</servlet-name>
+        <servlet-class>servlet.TestServlet2</servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+
+    <servlet>
+        <servlet-name>regServlet</servlet-name>
+        <servlet-class>servlet.RegServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>helloServlet</servlet-name>
+        <servlet-class>servlet.HelloServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>testServlet</servlet-name>
+        <servlet-class>servlet.TestServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>loginServlet</servlet-name>
+        <servlet-class>servlet.LoginServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>getInitParameterServlet</servlet-name>
+        <servlet-class>servlet.GetInitParameterServlet</servlet-class>
+        <init-param>
+            <param-name>username</param-name>
+            <param-value>admin</param-value>
+        </init-param>
+        <init-param>
+            <param-name>password</param-name>
+            <param-value>312</param-value>
+        </init-param>
+    </servlet>
+
+    <servlet>
+        <servlet-name>cartServlet</servlet-name>
+        <servlet-class>servlet.CartServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>TestServlet2</servlet-name>
+        <!-- ??????????,/??????? -->
+        <url-pattern>/servlet/TestServlet2</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>regServlet</servlet-name>
+        <url-pattern>/servlet/RegServlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>helloServlet</servlet-name>
+        <!--?????????????????????-->
+        <url-pattern>/servlet/helloServlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>testServlet</servlet-name>
+        <url-pattern>/servlet/testServlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>loginServlet</servlet-name>
+        <url-pattern>/servlet/loginServlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>getInitParameterServlet</servlet-name>
+        <url-pattern>/servlet/getInitParameterServlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>cartServlet</servlet-name>
+        <url-pattern>/servlet/cartServlet</url-pattern>
+    </servlet-mapping>
+
+
 </web-app>

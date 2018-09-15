@@ -1,6 +1,6 @@
 <%@ page language="java" import="java.util.*" contentType="text/html; charset=utf-8"%>
 <%@ page import="entity.Items"%>
-<%@ page import="dao.ItemsDao" %>
+<%@ page import="dao.ItemsDao"%>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -43,18 +43,22 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <body>
     <h1>商品展示</h1>
     <hr>
+  
     <center>
     <table width="750" height="60" cellpadding="0" cellspacing="0" border="0">
       <tr>
         <td>
-            <%-- 商品开始循环 --%>
-        <%
-            ItemsDao itemsDao = new ItemsDao();
-            List<Items> itemsArrayList = itemsDao.getAllItems();
-
-            if (itemsArrayList != null && itemsArrayList.size() > 0) {
-                for (Items item : itemsArrayList) {
-        %>
+          
+          <!-- 商品循环开始 -->
+           <% 
+               ItemsDao itemsDao = new ItemsDao();
+               List<Items> list = itemsDao.getAllItems();
+               if(list!=null&&list.size()>0)
+               {
+	               for(int i=0;i<list.size();i++)
+	               {
+	                  Items item = list.get(i);
+           %>   
           <div>
              <dl>
                <dt>
@@ -64,11 +68,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                <dd class="dd_city">产地:<%=item.getCity() %>&nbsp;&nbsp;价格:￥ <%=item.getPrice() %></dd> 
              </dl>
           </div>
-                <!-- 商品循环结束 -->
-        <%
-                }
-            }
-        %>
+          <!-- 商品循环结束 -->
+        
+          <%
+                   }
+              } 
+          %>
         </td>
       </tr>
     </table>
