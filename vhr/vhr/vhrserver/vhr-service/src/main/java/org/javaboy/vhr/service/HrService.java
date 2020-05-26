@@ -14,6 +14,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
+/**
+ * 实现了UserDetailsService, 过滤器最后条用此loadUserByUsername方法获取账号信息
+ */
 @Service
 public class HrService implements UserDetailsService {
     @Autowired

@@ -45,12 +45,17 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     public void configure(WebSecurity web) throws Exception {
-        web.ignoring().antMatchers("/css/**", "/js/**", "/index.html", "/img/**", "/fonts/**", "/favicon.ico", "/verifyCode");
+        web.ignoring().antMatchers("/css/**", "/js/**", "/index.html",
+                "/img/**", "/fonts/**", "/favicon.ico", "/verifyCode");
     }
 
+    // 配置了一个登陆bean, 在下面的configure http方法里添加到过滤器
     @Bean
     LoginFilter loginFilter() throws Exception {
+
         LoginFilter loginFilter = new LoginFilter();
+
+        // 配置登录成功时返回的JSON，登录成功时返回当前用户的信息
         loginFilter.setAuthenticationSuccessHandler((request, response, authentication) -> {
                     response.setContentType("application/json;charset=utf-8");
                     PrintWriter out = response.getWriter();
@@ -63,6 +68,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                     out.close();
                 }
         );
+
+        //表示登录失败，登录失败的原因可能有多种，我们根据不同的异常输出不同的错误提示即可
         loginFilter.setAuthenticationFailureHandler((request, response, exception) -> {
                     response.setContentType("application/json;charset=utf-8");
                     PrintWriter out = response.getWriter();
@@ -83,19 +90,35 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                     out.close();
                 }
         );
+
+
+        // 需要配置这个支持password模式
+        // support password grant type
         loginFilter.setAuthenticationManager(authenticationManagerBean());
+
         loginFilter.setFilterProcessesUrl("/doLogin");
-        ConcurrentSessionControlAuthenticationStrategy sessionStrategy = new ConcurrentSessionControlAuthenticationStrategy(sessionRegistry());
+
+        // 控制并发,即一个用户最多可以使用多少个session登录, 比如此处设为1, 结果就为,
+        // 同一个时间里, 第二处登录要么不能登录, 要么使前一个登录失效.
+        ConcurrentSessionControlAuthenticationStrategy sessionStrategy =
+                new ConcurrentSessionControlAuthenticationStrategy(sessionRegistry());
         sessionStrategy.setMaximumSessions(1);
         loginFilter.setSessionAuthenticationStrategy(sessionStrategy);
+
         return loginFilter;
     }
 
+    // 注册自定义的SessionRegistry, 通过它可以做到跟踪活跃的session, 统计在线人数, 显示在线用户
     @Bean
     SessionRegistryImpl sessionRegistry() {
         return new SessionRegistryImpl();
     }
 
+    /**
+     * 通过withObjectPostProcessor
+     * 将刚刚创建的CustomFilterInvocationSecurityMetadataSource和CustomUrlDecisionManager注入进来。
+     * 到时候，请求都会经过刚才的过滤器（除了configure(WebSecurity web)方法忽略的请求）
+     */
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
@@ -134,6 +157,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                             out.close();
                         }
                 );
+
+
         http.addFilterAt(new ConcurrentSessionFilter(sessionRegistry(), event -> {
             HttpServletResponse resp = event.getResponse();
             resp.setContentType("application/json;charset=utf-8");
@@ -143,6 +168,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             out.flush();
             out.close();
         }), ConcurrentSessionFilter.class);
+
+
         http.addFilterAt(loginFilter(), UsernamePasswordAuthenticationFilter.class);
     }
 }
