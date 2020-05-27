@@ -16,7 +16,8 @@ public class SpringDataUserDetailsService implements UserDetailsService {
         System.out.println("username="+username);
         //根据账号去数据库查询...
         //这里暂时使用静态数据
-        UserDetails userDetails = User.withUsername("zhangsan").password("123").authorities("p1").build();
+        UserDetails userDetails = User.withUsername("zhangsan")
+                .password("$2a$10$NlBC84MVb7F95EXYTXwLneXgCca6/GipyWR5NHm8K0203bSQMLpvm").authorities("p1").build();
         return userDetails;
     }
 }

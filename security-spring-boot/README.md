@@ -14,3 +14,16 @@
 
 ## 然后自定义UserDetailsService
 - 定义完成后，可以屏蔽WebSecurityConfig的UserDetailsService
+
+## 自定义PasswordEncoder
+- WebSecurityConfig中定义
+
+## 自定义登录jspr
+- 注意csrf，也可以用以下方式兼容
+```text
+<form action="login" method="post">
+<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+...
+</form>
+```
+

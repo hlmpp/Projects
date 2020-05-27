@@ -33,7 +33,12 @@ public class WebConfig implements WebMvcConfigurer {
     // 将/直接导向login.jsp页面: 根据viewResolver配置的前缀和后缀可以定位到login.jsp文件
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
-        registry.addViewController("/").setViewName("login");
+        // 这是spring security自带的登录界面
+//        registry.addViewController("/").setViewName("login");
+
+        // 这是自定义的登录界面
+        registry.addViewController("/").setViewName("redirect:/login-view");
+        registry.addViewController("/login-view").setViewName("login");
     }
 
 }
