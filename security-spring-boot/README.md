@@ -11,3 +11,6 @@
 ## 相比于spring需要init的一些配置，这里springboot就不需要了
 
 ## 启动测试直接运行main方法
+
+## 然后自定义UserDetailsService
+- 定义完成后，可以屏蔽WebSecurityConfig的UserDetailsService
