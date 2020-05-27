@@ -30,6 +30,6 @@ public class WebConfig implements WebMvcConfigurer {
     // 将/直接导向login.jsp页面: 根据viewResolver配置的前缀和后缀可以定位到login.jsp文件
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
-        registry.addViewController("/").setViewName("login");
+        registry.addViewController("/").setViewName("redirect:/login");
     }
 }

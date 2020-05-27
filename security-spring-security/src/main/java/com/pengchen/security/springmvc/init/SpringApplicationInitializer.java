@@ -2,6 +2,7 @@ package com.pengchen.security.springmvc.init;
 
 import com.pengchen.security.springmvc.config.ApplicationConfig;
 import com.pengchen.security.springmvc.config.WebConfig;
+import com.pengchen.security.springmvc.config.WebSecurityConfig;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
 /**
@@ -14,7 +15,7 @@ public class SpringApplicationInitializer extends AbstractAnnotationConfigDispat
     // Spring容器, 相当于加载了applicationcontext.xml
     @Override
     protected Class<?>[] getRootConfigClasses() {
-        return new Class[]{ApplicationConfig.class};
+        return new Class[]{ApplicationConfig.class, WebSecurityConfig.class};
     }
 
     // ServletContext, 相当于加载了springmvc.xml
