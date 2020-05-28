@@ -1,5 +1,10 @@
 # Spring Security结合Spring boot
 
+## 总结：
+
+- 拦截器FilterSecurityInterceptor拦截请求，分析器FilterInvocationSecurityMetadataSource获取所需权限，
+决策器AccessDecisionManage进行授权。
+
 ## 搭建maven工程，导入依赖
 
 ## 配置webconfig以及配置文件
