@@ -27,3 +27,10 @@
 </form>
 ```
 
+## 连接数据库认证
+
+- 首先创建user_db数据库
+
+   - 数据表使用flyway方式创建，注意文件夹是db/migration这样创建，不是db.migration这样创建。
+   
+- 用户表已经在sql中写明
