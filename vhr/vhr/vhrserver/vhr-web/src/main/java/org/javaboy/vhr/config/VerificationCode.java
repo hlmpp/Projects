@@ -12,18 +12,21 @@ import java.util.Random;
  */
 public class VerificationCode {
 
-	private int width = 100;// 生成验证码图片的宽度
-	private int height = 30;// 生成验证码图片的高度
+	// 生成验证码图片的宽度
+	private int width = 100;
+	// 生成验证码图片的高度
+	private int height = 30;
 	private String[] fontNames = { "宋体", "楷体", "隶书", "微软雅黑" };
-	private Color bgColor = new Color(255, 255, 255);// 定义验证码图片的背景颜色为白色
+	// 定义验证码图片的背景颜色为白色
+	private Color bgColor = new Color(255, 255, 255);
 	private Random random = new Random();
 	private String codes = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
-	private String text;// 记录随机字符串
+	// 记录随机字符串
+	private String text;
 
 	/**
 	 * 获取一个随意颜色
 	 * 
-	 * @return
 	 */
 	private Color randomColor() {
 		int red = random.nextInt(150);
@@ -35,7 +38,6 @@ public class VerificationCode {
 	/**
 	 * 获取一个随机字体
 	 * 
-	 * @return
 	 */
 	private Font randomFont() {
 		String name = fontNames[random.nextInt(fontNames.length)];
@@ -47,7 +49,6 @@ public class VerificationCode {
 	/**
 	 * 获取一个随机字符
 	 * 
-	 * @return
 	 */
 	private char randomChar() {
 		return codes.charAt(random.nextInt(codes.length()));
@@ -56,12 +57,12 @@ public class VerificationCode {
 	/**
 	 * 创建一个空白的BufferedImage对象
 	 * 
-	 * @return
 	 */
 	private BufferedImage createImage() {
 		BufferedImage image = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
 		Graphics2D g2 = (Graphics2D) image.getGraphics();
-		g2.setColor(bgColor);// 设置验证码图片的背景颜色
+		// 设置验证码图片的背景颜色
+		g2.setColor(bgColor);
 		g2.fillRect(0, 0, width, height);
 		return image;
 	}

@@ -15,14 +15,14 @@ import java.util.Collection;
 import java.util.List;
 
 /**
- * 这个类的作用，主要是根据用户传来的请求地址，分析出请求需要的角色
+ * 获取要访问当前资源所需要的权限
  */
 @Component
 public class CustomFilterInvocationSecurityMetadataSource implements FilterInvocationSecurityMetadataSource {
     @Autowired
     MenuService menuService;
 
-    AntPathMatcher antPathMatcher = new AntPathMatcher();
+    private AntPathMatcher antPathMatcher = new AntPathMatcher();
 
     @Override
     public Collection<ConfigAttribute> getAttributes(Object object) throws IllegalArgumentException {

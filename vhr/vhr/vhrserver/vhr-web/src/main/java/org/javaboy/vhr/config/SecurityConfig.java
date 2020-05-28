@@ -59,10 +59,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         loginFilter.setAuthenticationSuccessHandler((request, response, authentication) -> {
                     response.setContentType("application/json;charset=utf-8");
                     PrintWriter out = response.getWriter();
+
+                    // UserDetails的实现类
                     Hr hr = (Hr) authentication.getPrincipal();
+
                     hr.setPassword(null);
                     RespBean ok = RespBean.ok("登录成功!", hr);
+                    // 转json
                     String s = new ObjectMapper().writeValueAsString(ok);
+
                     out.write(s);
                     out.flush();
                     out.close();
@@ -71,20 +76,27 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
         //表示登录失败，登录失败的原因可能有多种，我们根据不同的异常输出不同的错误提示即可
         loginFilter.setAuthenticationFailureHandler((request, response, exception) -> {
+
                     response.setContentType("application/json;charset=utf-8");
                     PrintWriter out = response.getWriter();
                     RespBean respBean = RespBean.error(exception.getMessage());
+
                     if (exception instanceof LockedException) {
                         respBean.setMsg("账户被锁定，请联系管理员!");
+
                     } else if (exception instanceof CredentialsExpiredException) {
                         respBean.setMsg("密码过期，请联系管理员!");
+
                     } else if (exception instanceof AccountExpiredException) {
                         respBean.setMsg("账户过期，请联系管理员!");
+
                     } else if (exception instanceof DisabledException) {
                         respBean.setMsg("账户被禁用，请联系管理员!");
+
                     } else if (exception instanceof BadCredentialsException) {
                         respBean.setMsg("用户名或者密码输入错误，请重新输入!");
                     }
+
                     out.write(new ObjectMapper().writeValueAsString(respBean));
                     out.flush();
                     out.close();
@@ -96,6 +108,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         // support password grant type
         loginFilter.setAuthenticationManager(authenticationManagerBean());
 
+        //登录url，可覆盖构造方法中的url
         loginFilter.setFilterProcessesUrl("/doLogin");
 
         // 控制并发,即一个用户最多可以使用多少个session登录, 比如此处设为1, 结果就为,

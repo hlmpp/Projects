@@ -18,7 +18,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * 最后调用过滤链的最后一条, 调用HrService实现了UserDetailsService, 获取用户信息
+ * UsernamePasswordAuthenticationFilter 用于处理来自表单提交的认证。该表单必须提供对应的用户名和密
+ * 码，其内部还有登录成功或失败后进行处理的 AuthenticationSuccessHandler 和
+ * AuthenticationFailureHandler，这些都可以根据需求做相关改变。
  */
 public class LoginFilter extends UsernamePasswordAuthenticationFilter {
     @Autowired
@@ -60,6 +62,7 @@ public class LoginFilter extends UsernamePasswordAuthenticationFilter {
                     username, password);
 
             setDetails(request, authRequest);
+            // UserDetails的实现类
             Hr principal = new Hr();
             principal.setUsername(username);
 

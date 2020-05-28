@@ -11,6 +11,16 @@ import org.springframework.stereotype.Component;
 
 import java.util.Collection;
 
+/**
+ * FilterSecurityInterceptor会调用 AccessDecisionManager 进行授权决策，若决策通过，则允许访问资
+ * 源，否则将禁止访问。通过传递的参数来决定用户是否有访问对应受保护资源的权限。
+ * AccessDecisionManager采用投票的方式来确定是否能够访问受保护资源。
+ *
+ * Spring security默认使用的是AffirmativeBased。
+ * （1）只要有AccessDecisionVoter的投票为ACCESS_GRANTED则同意用户进行访问；
+ * （2）如果全部弃权也表示通过；
+ * （3）如果没有一个人投赞成票，但是有人投反对票，则将抛出AccessDeniedException。
+ */
 @Component
 public class CustomUrlDecisionManager implements AccessDecisionManager {
 
@@ -23,6 +33,7 @@ public class CustomUrlDecisionManager implements AccessDecisionManager {
     public void decide(Authentication authentication, Object object,
                        Collection<ConfigAttribute> configAttributes)
             throws AccessDeniedException, InsufficientAuthenticationException {
+
         for (ConfigAttribute configAttribute : configAttributes) {
             //当前请求需要的权限
             String needRole = configAttribute.getAttribute();
