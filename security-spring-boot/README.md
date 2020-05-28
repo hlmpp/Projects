@@ -46,3 +46,9 @@
 
 - 规则的顺序是重要的，更具体的规则应该先写。
 
+## 基于方法的授权
+
+- 在任意配置类加上@EnableGlobalMethodSecurity
+- 如果是prePost注解，则是@EnableGlobalMethodSecurity(prePostEnabled = true)
+- WebSecurityConfig里面的授权就可以去掉
+- controller的方法上加上@PreAuthorize("hasAuthority('p_transfer') and hasAuthority('p_read_account')")，就可以实现
