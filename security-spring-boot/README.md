@@ -34,3 +34,6 @@
    - 数据表使用flyway方式创建，注意文件夹是db/migration这样创建，不是db.migration这样创建。
    
 - 用户表已经在sql中写明
+
+## 会话保证
+- 这个看pdf文档，默认是创建
